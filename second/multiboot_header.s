@@ -1,32 +1,31 @@
+multiboot_magic_number = 0xe85250d6
+multiboot_architecture = 0
+multiboot_header_length = multiboot_header_end - multiboot_header_begin
+multiboot_checksum = -(multiboot_magic_number + multiboot_architecture + multiboot_header_length)
+multiboot_end_tag_type = 0
+multiboot_end_tag_flags = 0
+multiboot_end_tag_length = multiboot_end_tag_end - multiboot_end_tag_begin
+
+
+
 .section .multiboot_header, "a"
 .balign 4
 
+
+
 multiboot_header_begin:
 
-    // magic number for multiboot2
-    .long 0xe85250d6
+    .long multiboot_magic_number
+    .long multiboot_architecture
+    .long multiboot_header_length
+    .long multiboot_checksum
+    
+    multiboot_end_tag_begin:
 
-    // architecture (protected mode i386)
-    .long 0
+        .word multiboot_end_tag_type
+        .word multiboot_end_tag_flags
+        .long multiboot_end_tag_length
 
-    // header length
-    .long multiboot_header_end - multiboot_header_begin
-
-    // checksum
-    .long -(0xe85250d6 + 0 + (multiboot_header_end - multiboot_header_begin))
-
-    // end tag
-    end_tag_begin:
-
-        // type
-        .word 0
-
-        // flags
-        .word 0
-
-        // length
-        .long end_tag_end - end_tag_begin
-
-    end_tag_end:
+    multiboot_end_tag_end:
 
 multiboot_header_end:
