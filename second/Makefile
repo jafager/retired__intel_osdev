@@ -15,5 +15,11 @@ kernel.elf: kernel.ld multiboot_header.o startup.o
 run: kernel.iso
 	qemu-system-x86_64 -cdrom kernel.iso
 
+debug: kernel.iso
+	qemu-system-x86_64 -cdrom kernel.iso -monitor stdio
+
+dump: kernel.elf
+	x86_64-elf-objdump -d kernel.elf
+
 clean:
 	rm -f *.iso *.elf *.o iso/boot/kernel.elf
