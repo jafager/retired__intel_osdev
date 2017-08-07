@@ -17,8 +17,9 @@ startup:
     call serial_init
 
     mov eax, message_ready
-    push eax
     call serial_puts
+
+    mov dword [0xb8000], 0x2f4b2f4f
 
     hlt
 
