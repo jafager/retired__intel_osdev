@@ -1,9 +1,8 @@
-%define serial_com1_data_port               0x3f8
-%define serial_com1_fifo_command_port       0x3fa
-%define serial_com1_line_command_port       0x3fb
-%define serial_com1_modem_command_port      0x3fc
-%define serial_com1_line_status_port        0x3fd
-
+serial_com1_data_port               equ     0x3f8
+serial_com1_fifo_command_port       equ     0x3fa
+serial_com1_line_command_port       equ     0x3fb
+serial_com1_modem_command_port      equ     0x3fc
+serial_com1_line_status_port        equ     0x3fd
 
 
 
